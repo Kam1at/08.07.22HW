@@ -20,14 +20,24 @@ class Task:
     def __repr__(self):
         return f"{self.__keys()}"
 
+    def __len__(self):
+        return len(self.content)
+
+    def __bool__(self):
+        return bool(len(self.content))
 
 
-todo_list = set()
 
-todo_list.add(Task('Сделать домашку'))
-todo_list.add(Task('Выпить кофе'))
-todo_list.add(Task('Выйти на пробежку'))
-todo_list.add(Task('Сделать домашку'))
+todo_list = []
 
-for item in todo_list:
-    print(item)
+todo_list.append(Task('Сделать домашку'))
+todo_list.append(Task(''))
+todo_list.append(Task('Сделать домашку'))
+todo_list.append(Task(''))
+
+non_empty_tasks = [item for item in todo_list if item]
+print(non_empty_tasks)
+# [Сделать домашку (создано 2022-12-08 12:21:16), Сделать домашку (создано 2022-12-08 12:21:16)]
+
+print(len([item for item in todo_list if not item]))
+# 2
